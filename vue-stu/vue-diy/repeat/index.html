@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>my-vue</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{name}}</p>
+    <p my-text="name"></p>
+    <p>{{age}}</p>
+    <!-- <p>{{doubleAge}}</p> -->
+    <input type="text" my-model="name"> <button @click="changeName">呵呵</button>
+    <div my-html="html"></div>
+  </div>
+  <script src='./myvue.js'></script>
+  <script src='./compile.js'></script>
+  <script>
+    const app = new MyVue({
+
+      el: '#app',
+      data: {
+        name: "I am test.",
+        age: 12,
+        html: '<button>这是⼀个按钮</button>'
+      },
+      created() {
+        console.log('created 开始')
+        setTimeout(() => {
+          this.name = 'name 改变了'
+        }, 1500)
+      },
+      methods: {
+        changeName() {
+          this.name = 'name be change'
+          this.age = 1
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

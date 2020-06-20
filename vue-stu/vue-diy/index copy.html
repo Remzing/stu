@@ -1,0 +1,25 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./rvue.js"></script>
+  <script>
+    let app = new RVue({
+      data: { foo: 'foo', aaa: { bbb: '456' } }
+    })
+    app.$data.foo = "12456"
+    // app.$data.aaa.bbb = "qwer"
+    app.aaa.bbb = "qwer"
+    // console.log("zzzzz", app.$data.aaa.bbb)
+    console.log("vvvv", app.foo)
+
+    app.aaa
+  </script>
+</body>
+
+</html>
