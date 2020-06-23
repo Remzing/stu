@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .item-header {
+    color: green;
+    font-size: 30px;
+  }
+</style>
+
+<body>
+  <!-- 这就是用createElement渲染出来的真实dom
+    <div id="text">
+      <p class="item">节点1</p>
+    </div> 
+-->
+  <div id="app">
+
+  </div>
+  <script src="vdom.js"></script>
+  <script>
+    let vnode = createElement("div", { id: "test" }, [
+      createElement("p", { key: "a", style: { color: "blue" } }, "节点1"),
+      createElement("p", { key: "b", '@click': () => { alert("xxxx") } }, "节点2"),
+      createElement("p", { key: "c", "class": "item-header" }, "节点3"),
+      createElement("p", { key: "d" }, "节点4"),
+    ])
+    let vnode2 = createElement("div", { id: "test" }, [
+      createElement("p", { key: "d" }, "节点4"),
+      createElement("p", { key: "a", style: { color: "red" } }, "节点1"),
+      createElement("p", { key: "b", }, "节点2"),
+      createElement("p", { key: "e", }, "节点5"),
+      createElement("p", { key: "f", style: { color: "pink" } }, "节点6"),
+    ])
+
+    // console.log(JSON.stringify(vnode))
+
+    render(vnode, document.getElementById("app"))
+
+    setTimeout(() => {
+      render(vnode2, document.getElementById("app"))
+    }, 1000);
+    /**
+     * 1. 虚拟dom是什么
+     * 虚拟dom是有真实dom构造成的js的对象，通过对虚拟dom的对比，diff出不同两次虚拟dom的不同之处，尽可能的减少真实dom的修改渲染，提高性能
+    */
+    // function createElement() {
+    //   return {
+    //     tag: "div",
+    //     data: { id: "app" },
+    //     children: [
+    //       {
+    //         tag: "p",
+    //         data: { class: "item" },
+    //         children: ["节点1"]
+    //       }
+    //     ]
+    //   }
+    // }
+
+    // let div = document.createElement('div')
+    // let ret = ''
+    // for (const key in div) {
+    //   ret += key + ' '
+    // }
+    // console.log(ret)
+  </script>
+</body>
+
+</html>
