@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="file" id="avatar" name="avatar">
+</body>
+<script>
+  var input = document.querySelector('input')
+  input.addEventListener('change', updateImageDisplay)
+
+  function updateImageDisplay() {
+    var curFiles = input.files;
+    var file = curFiles[0]
+
+    console.log('curfiles', curFiles)
+    if (!!file) {
+      var reader = new FileReader()
+      // 将图片转成DataUrl格式
+      //! 注意读取的文件  需要做文件类型限制
+      reader.readAsText(file)
+
+      reader.onload = function () {
+        // 读取完毕后输出结果
+        console.log(reader.result)
+      }
+    }
+  }
+</script>
+
+</html>
